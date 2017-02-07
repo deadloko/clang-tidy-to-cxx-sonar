@@ -13,7 +13,7 @@ tidy_check_report_file = open(os.path.abspath(tidy_check_report_path), "r")
 tidy_check_report = tidy_check_report_file.readlines()
 tidy_check_report_file.close()
 
-print tidy_check_report
+# print tidy_check_report
 
 filenamew = "clang-tidy-check-converted.xml"
 filetowrite = open(filenamew, 'w')
@@ -22,16 +22,20 @@ filetowrite.write("<results>\n")
 
 for check in tidy_check_report:
     if check.startswith('/') and "note:" not in check:
-        error = check.split(":")[0]
-        line = check.split(":")[1]
-        id = check.split(':')[4].split('[')[1].strip(']\n')
-        msg = check.split(':')[4].split('[')[0]
+        try:
+            print check
+            error = check.split(":")[0]
+            line = check.split(":")[1]
+            id = check.split(':')[-1].split('[')[1].strip(']\n')
+            msg = check.split(':')[4].split('[')[0]
 
-        # print error
-        # print line
-        # print id
-        # print msg
-        filetowrite.write(" <error file=\"" + error + "\" line=\""+ line + "\" id=\"clang-tidy/" + id + "\" msg=\"" + msg + "\"/>\n")
+            # print error
+            # print line
+            # print id
+            # print msg
+            filetowrite.write(" <error file=\"" + error + "\" line=\""+ line + "\" id=\"clang-tidy/" + id + "\" msg=\"" + msg + "\"/>\n")
+        except:
+            pass
 
 
 filetowrite.write("</results>\n")
