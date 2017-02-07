@@ -23,11 +23,11 @@ filetowrite.write("<results>\n")
 for check in tidy_check_report:
     if check.startswith('/') and "note:" not in check:
         try:
-            print check
+            # print check
             error = check.split(":")[0]
             line = check.split(":")[1]
             id = check.split(':')[-1].split('[')[1].strip(']\n')
-            msg = check.split(':')[4].split('[')[0]
+            msg = check.split(':')[4].split('[')[0].replace('&', '&amp').replace('<', '&lt')
 
             # print error
             # print line
