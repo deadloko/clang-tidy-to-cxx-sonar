@@ -1,5 +1,6 @@
 import os
 import sys
+from xml.sax.saxutils import escape
 
 def usage():
     return 'Usage: %s <cpplint.py> .... txt file can be obtain by running python cpplint.py --filter=' % sys.argv[0]
@@ -27,8 +28,7 @@ for check in tidy_check_report:
             error = check.split(":")[0]
             line = check.split(":")[1]
             id = check.split(':')[-1].split('[')[1].strip(']\n')
-            msg = check.split(':')[4].split('[')[0].replace('&', '&amp').replace('<', '&lt')
-
+            msg = escape(check.split(':')[4].split('[')[0])
             # print error
             # print line
             # print id
