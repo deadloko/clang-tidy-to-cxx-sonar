@@ -28,7 +28,7 @@ for check in tidy_check_report:
             error = check.split(":")[0]
             line = check.split(":")[1]
             id = check.split(':')[-1].split('[')[1].strip(']\n')
-            msg = escape(check.split(':')[4].split('[')[0])
+            msg = escape(check.split(':')[4].split('[')[0], {"\"": "&quot;"})
             # print error
             # print line
             # print id

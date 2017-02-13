@@ -1,4 +1,3 @@
-import yaml
 
 filenamew = "clang-tidy-rules.xml"
 filetowrite = open(filenamew, 'w')
@@ -50,3 +49,4 @@ filetowrite.write("    </rule>\n")
 
 filetowrite.write("</rules>\n")
 filetowrite.close()
+
