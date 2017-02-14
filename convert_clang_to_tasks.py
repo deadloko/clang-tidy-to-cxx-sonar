@@ -1,6 +1,5 @@
 import os
 import sys
-from xml.sax.saxutils import escape
 
 def usage():
     return 'Usage: %s <cpplint.py> .... txt file can be obtain by running python cpplint.py --filter=' % sys.argv[0]
@@ -35,5 +34,7 @@ for check in tidy_check_report:
             filetowrite.write(error+"\t"+line+"\t"+msgtype+"\t"+msg+"\n")
         except:
             pass
+    else:
+        filetowrite.write(check)
 
 filetowrite.close()
